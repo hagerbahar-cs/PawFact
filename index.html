@@ -4,17 +4,66 @@
 
             <html lang="en-us"> 
                 <head>
-                    <link rel="icon" href="/Users/hagermayabahar/Documents/projects/PawFact/assets/images/favicon_io/android-chrome-192x192.png"/>
-                    <link rel="stylesheet" href="/Users/hagermayabahar/Documents/projects/PawFact/style.css"/>
+                    <link rel="icon" href="assets/images/favicon_io/android-chrome-192x192.png"/>
+                    <link 
+                        rel="stylesheet" 
+                        href="style.css"
+                        />
                     <script src="script.js" defer></script>
                     <meta charset="utf-8"/>
                     <meta name="viewport" content="width=device=width"/>
                     <title>PawFact</title>
                 </head>
                 <body>
+                    <a href="pages/about.html"> About PawFacts </a>
                     <h1>What!</h1>
                     <p>Hey I love that</p>
-                    <img src="/Users/hagermayabahar/Documents/projects/PawFact/assets/images/mainCat.jpg" alt="A cat welcoming you!"/>
+                    <img 
+                        src="assets/images/mainCat.jpg" 
+                        alt="A cat welcoming you!"
+                        width="3096"
+                        height="4523"
+                        title="A cat staring on a edge."
+                    />
+                    <figure>
+                    <video src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" controls>
+
+                    </video>
+                    <figcaption>
+                        <p>A test video!</p>
+                    </figcaption>
+                    </figure>
+                    <video controls>
+                        <source src="rabbit320.mp4" type="video/mp4"/>
+                        <source src="rabbit320.webm" type="video/mp4"/>
+
+                        <p>
+                            Your browser doesnt support this video, here is a link!
+                            <a href="rabbit320.mp4"></a>
+
+                        </p>
+
+                    </video>
+                    <form action="./submit_page" method="get">
+                        <h2>Subscribe to my newsletter!</h2>
+                        <p>
+                            <label for="name"> Name (required): </label>
+                            <input type="text" name="name" id="name" required/>
+                        </p>
+                        <p>
+                            <label for="email"> Email (required): </label>
+                            <input type="email" name="email" id="email" required/>
+                        </p>
+                        <p>
+                            <button>Sign me up!</button>
+                        </p>
+
+
+                    </form>
+
+                    <figure>
+                        A cat Welcoming you!
+                    </figure>
                     <p>How are you doing!</p>
                     <ul>
                         <li>un list 1</li>
@@ -31,8 +80,16 @@
                     <p>Welcome to the wonderful world of PawFact!</p>
                     <hr/>
 
-                    <a href="https://www.mozilla.org/en-US/about/manifesto/" title="hmb github"> my github! </a>
-                    <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links" title="window link" target="_blank"> Link to open in window!</a>
+                    <a 
+                        href="https://www.mozilla.org/en-US/about/manifesto/"
+                        title="hmb github"
+                        > my github! </a>
+                    <a 
+                        href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links" 
+                        title="window link" 
+                        target="_blank"> 
+                        Link to open in window!
+                    </a>
 
                 </body>
 
