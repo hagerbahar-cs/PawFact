@@ -1,22 +1,24 @@
-import pytest
+from flask import Flask, render_template
+import webbrowser
 
-def multi(x, y):
-    return x * y
+import threading
 
-def test_multiply():
-    assert multi(2, 3) == 6
-    assert multi(-1, 5) == -5
-    assert multi(0, 100) == 0
+app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return render_template("index.html")
 
+def open_browser():
+    # macOS specific browser call
+    try:
+        webbrowser.get("macosx").open("http://127.0.0.1:5000/")
+    except:
+        webbrowser.open("http://127.0.0.1:5000/")  # fallback
 
 if __name__ == "__main__":
-    print("Hello")
-
-    n = int(input("Please enter a number for the loop: "))
-    for i in range(n+1):
-        print(i, end=",") if i < n else print(i)
-
-    a, b = 2, 3
-    x = multi(a, b)
-    print(x)
+    threading.Timer(1.0, open_browser).start()
+    app.run(debug=True)
+    
+for i in range(10):
+    print(i)
