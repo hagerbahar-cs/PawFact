@@ -1,22 +1,48 @@
-import pytest
+# Fetches one cat fact from Ninja Cat Fact API 
 
-def multi(x, y):
-    return x * y
-
-def test_multiply():
-    assert multi(2, 3) == 6
-    assert multi(-1, 5) == -5
-    assert multi(0, 100) == 0
+from flask import Flask, render_template, jsonify
+import requests, logging, os
 
 
+logging.basicConfig(level=logging.INFO)
+
+app = Flask(__name__)
+
+# Route for homapage/index 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+API_URL = os.getenv
+
+# API endpoint to fetch (called through JS)
+@app.route("/get-fact")
+def get_fact():
+
+    # Try and request for cat fact from APi
+    try:
+        response = requests.get("https://catfact.ninja/fact", timeout=5)
+
+        # raises error to go to except block for for failed HTTPS  
+        response.raise_for_status()
+
+        # get the json fact as a dictionary 
+        info = response.json()
+
+        # return the fact and length of the fact, if none found, fallback
+        return jsonify({
+            "fact": info.get("fact", "No fact found"), 
+            "length": info.get("length", 0)
+            })
+    except Exception as e:
+        logging.error(f"Cat Fact API failed: {e}")
+        return jsonify({
+            "error":str(e),
+            "message": "Opps! Couldn't fetch cat fact! Try again later."
+
+            # HTTPS standard failure error
+            }), 500
 
 if __name__ == "__main__":
-    print("Hello")
-
-    n = int(input("Please enter a number for the loop: "))
-    for i in range(n+1):
-        print(i, end=",") if i < n else print(i)
-
-    a, b = 2, 3
-    x = multi(a, b)
-    print(x)
+    app.run(debug=True)
