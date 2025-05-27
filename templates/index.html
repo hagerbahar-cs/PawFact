@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon"
-    href="../assets/images/favicon_io/favicon.ico"
-    >
-    <link 
-    rel="stylesheet"
-    href="../style.css"
-    >
-    <script src="../script.js" defer></script>
+    <!-- Use Jinga Url for static file references -->
+    <link rel="icon" href="{{ url_for('static', filename='assets/images/favicon_io/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawFact</title>
 </head>
 <body>
     <h1 class="main-title">PawFact</h1>
-    <nav class="">
+    
+    <nav>
         <ul>
-            <li class="highlight-hover"><a href="../pages/about.html">about</a></li>
-            <li class="highlight-hover"><a href="">source</a></li>
-            <li class="highlight-hover"><a href="">save fact</a></li>
-            <li class="highlight-hover"><a href="">link</a></li>
-            <li class="highlight-hover"><a href="">link</a></li>
+            <!-- Use url_for for Flask routes -->
+            <li class="highlight-hover"><a href="{{ url_for('about') }}">about</a></li>
+            <li class="highlight-hover"><a href="#">source</a></li>
+            <li class="highlight-hover"><a href="#">save fact</a></li>
+            <li class="highlight-hover"><a href="#">link</a></li>
         </ul>
     </nav>
    
     <main>
-        
         <div class="image-style">
-        <img rel="preload" src = "../assets/images/mainCat.jpg" alt="A cute cat glancing" width="200">
+            <!-- Fixed image path -->
+            <img src="{{ url_for('static', filename='assets/images/mainCat.jpg') }}" 
+                 alt="A cute cat glancing" 
+                 width="200"
+                 loading="lazy"
+                 id="cat-hover"
+                 data-sound="{{ url_for('static', filename='sounds/catMeow.mp3') }}"
+                 class="sound-trig">
 
-        <section>
-            <p>Generate a new cat fact!</p>
-            <button>
-                Get new cat fact
-            </button>
-
-        </section>
-
+            <section>
+               <div>
+                   <h3>  Generate a new cat fact</h3>
+                    <button id="fact-button" data-sound="{{ url_for('static', filename='sounds/click.mp3') }}"
+                    class="sound-trig">
+                        Get new cat fact
+                    </button>
+                    <h4 id="cat-fact">{{fact}}</h4>
+                    <p id="fact-word-count">{{wordCount}}</p>
+               </div>
+            </section>
         </div>
     </main>
 
     <footer>
         <p class="highlight-hover">Pawfact is creative common</p>
-
     </footer>
-    
-   
-    
 </body>
 </html>
-

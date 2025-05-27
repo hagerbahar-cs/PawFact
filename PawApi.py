@@ -14,7 +14,7 @@ def home():
     return render_template("index.html")
 
 
-API_URL = os.getenv
+CAT_API_URL = os.getenv("CAT_API_URL", "https://catfact.ninja/fact")
 
 # API endpoint to fetch (called through JS)
 @app.route("/get-fact")
@@ -22,7 +22,7 @@ def get_fact():
 
     # Try and request for cat fact from APi
     try:
-        response = requests.get("https://catfact.ninja/fact", timeout=5)
+        response = requests.get(CAT_API_URL, timeout=5)
 
         # raises error to go to except block for for failed HTTPS  
         response.raise_for_status()
@@ -43,6 +43,10 @@ def get_fact():
 
             # HTTPS standard failure error
             }), 500
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
